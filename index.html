@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AKASH FREE PANEL</title>
+<style>
+body{margin:0;background:#07111f;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:35px 12px;background:#102b49}
+h1{color:#64b5ff;font-size:30px}
+p{color:#c3d5e8}
+main{max-width:900px;margin:auto;padding:18px}
+input{width:100%;padding:14px;border-radius:12px;border:1px solid #45617f;background:#13243a;color:white;font-size:16px;box-sizing:border-box}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+button{padding:10px 13px;border:0;border-radius:9px;background:#176fc0;color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:#132943;border:1px solid #294866;border-radius:14px;padding:17px}
+.card h2{font-size:19px}
+a{display:inline-block;background:#1675c8;color:white;text-decoration:none;padding:10px 14px;border-radius:9px}
+small{color:#a9bfd5}
+</style>
+</head>
+<body>
+<header>
+<h1>⚡ AKASH FREE PANEL</h1>
+<p>ফ্রি অ্যাপ, গেমিং রিসোর্স ও দরকারি টুলস এক জায়গায়</p>
+</header>
+<main>
+<input id="search" placeholder="নাম লিখে খুঁজুন...">
+<nav id="filters"></nav>
+<section class="grid" id="cards"></section>
+<p><small>শুধু বৈধ ও প্রকাশ্য রিসোর্স। হ্যাক, চিট বা পাইরেটেড অ্যাপ এখানে দেওয়া হয় না।</small></p>
+</main>
+<script>
+const data=[
+["Free Fire Official","Free Fire","গেমের খবর ও আপডেট","https://ff.garena.com/"],
+["HUD & Sensitivity","Free Fire","কন্ট্রোল সাজানোর গাইড","https://ff.garena.com/"],
+["F-Droid","Free Apps","ওপেন সোর্স Android অ্যাপ","https://f-droid.org/"],
+["GitHub Explore","Free Apps","ফ্রি প্রজেক্ট ও টুলস","https://github.com/explore"],
+["Free Games","Gaming","বিনামূল্যের গেম","https://itch.io/games/free"],
+["Microsoft Copilot","AI Tools","AI সহকারী","https://copilot.microsoft.com/"],
+["Google AI Studio","AI Tools","AI টুলস","https://aistudio.google.com/"],
+["GIMP","Editing","ফ্রি ছবি সম্পাদনা","https://www.gimp.org/"],
+["Krita","Editing","ডিজিটাল আঁকার টুল","https://krita.org/"],
+["Photopea","Editing","অনলাইনে ছবি সম্পাদনা","https://www.photopea.com/"],
+["YouTube Studio","Social","YouTube চ্যানেল পরিচালনা","https://studio.youtube.com/"],
+["Meta Business Suite","Social","সোশ্যাল মিডিয়া পরিচালনা","https://business.facebook.com/"],
+["GitHub Pages","Website","ফ্রি ওয়েবসাইট প্রকাশ","https://pages.github.com/"]
+];
+let category="সব";
+const filters=document.getElementById("filters");
+["সব","Free Fire","Free Apps","Gaming","AI Tools","Editing","Social","Website"].forEach(c=>{
+let b=document.createElement("button");b.textContent=c;
+b.onclick=()=>{category=c;show()};filters.appendChild(b);
+});
+function show(){
+let q=document.getElementById("search").value.toLowerCase();
+let list=data.filter(x=>(category==="সব"||x[1]===category)&&x.join(" ").toLowerCase().includes(q));
+document.getElementById("cards").innerHTML=list.map(x=>
+`<article class="card"><small>${x[1]}</small><h2>${x[0]}</h2><p>${x[2]}</p><a href="${x[3]}" target="_blank" rel="noopener">Open ↗</a></article>`
+).join("");
+}
+document.getElementById("search").addEventListener("input",show);
+show();
+</script>
+</body>
+</html>
